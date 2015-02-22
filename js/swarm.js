@@ -4,7 +4,7 @@
 
 var Swarm = function () {
 
-    var noOfBees = 10;
+    var noOfBees = 20;
     var noOfIterations = 500;
     var inertia = 0.1;
     var rhoParticle = 0.1;
@@ -18,7 +18,8 @@ var Swarm = function () {
     var xStart, yStart, vxStart, vyStart, distance, maxDist;
     var maxDistIda, maxDistIdb;
 
-    init();
+
+    // init();
     // simulate();
 
     var init = function () {
@@ -58,15 +59,25 @@ var Swarm = function () {
 
     var findMaxDistance = function(){
 
+        var x2x1, y2y1 = 0;
         maxDist, maxDistIda, maxDistIdb = 0;
 
         for (var i = 0; i < noOfBees; i++) {
 
             for (var j = 0; j < noOfBees; j++) {
 
-                distance = Math.sqrt(); // We use the Pythagorean Theorem to find the distance!
+                // We use the Pythagorean Theorem to find the distance! -> √(x2 - x1) + (y2 - y1)
+                x2x1 = Math.pow(beeSwarm[i].getX() - beeSwarm[j].getX(),2);
+                y2y1 = Math.pow(beeSwarm[i].getY() - beeSwarm[j].getY(),2);
+                distance = Math.sqrt(x2x1 + y2y1);
 
-//frbnwaægniroawinofiewo
+                if(distance > maxDist){ // Then we check if the new value is the new "best"
+
+                    maxDist = distance;
+                    maxDistIda = i;
+                    maxDistIdb = j;
+
+                }
 
             }
 
@@ -74,11 +85,11 @@ var Swarm = function () {
 
     };
 
+    init();
+    simulate();
 
+    // At some point we should maybe return something...
 
-
-
-    return {}
 };
 
 
