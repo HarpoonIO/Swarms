@@ -13,5 +13,11 @@
     "vendor",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2"
+  },
+  "devDependencies": {
+    "jasmine": "~2.2.1"
+  }
 }
