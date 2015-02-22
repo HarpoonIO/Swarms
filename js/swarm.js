@@ -1,5 +1,5 @@
 /**
- * Created by christophermortensen on 21/02/15.
+ * Created by Thomas Hedegaard & Christopher Mortensen on 21/02/15.
  */
 
 var Swarm = function () {
@@ -71,9 +71,6 @@ var Swarm = function () {
             }
 
         }
-
-
-
 
     };
 
