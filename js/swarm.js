@@ -87,7 +87,7 @@ var Swarm = function () {
 
     //init();
     //simulate();
-
+    console.log("Called from the swarm!");
     // At some point we should maybe return something...
 
 };
