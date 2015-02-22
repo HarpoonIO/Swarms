@@ -85,8 +85,8 @@ var Swarm = function () {
 
     };
 
-    init();
-    simulate();
+    //init();
+    //simulate();
 
     // At some point we should maybe return something...
 
