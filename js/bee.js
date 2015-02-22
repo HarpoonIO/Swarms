@@ -24,11 +24,12 @@ var Bee = function(_beeNumber , _x, _y, _know, _vx, _vy, _vmax, _intertia, _rhoP
     fuzzy = _fuzzy;
     xParticleMax = x;
     yParticleMax = y;
-    zParticleMax = getZ();
 
     var getZ = function(){
         return landscape.getZ(x, y);
     };
+
+    zParticleMax = getZ(); // hmmmm...
 
     var getX = function(){
         return x;
