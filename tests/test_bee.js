@@ -10,7 +10,11 @@ describe('The making of a single bee', function () {
         }
     };
 
+    //var foo;
+
     beforeEach(function () {
+
+        //foo = jasmine.createSpyObj('knowledgeExchange', ['findBestBee']); // name, [functions]
 
         bee = new Bee(beeId, 1, 1, knowMock, 0.1, 0.1, 0.7, 0.1, 0.01, 0.01, false);
 
@@ -24,6 +28,17 @@ describe('The making of a single bee', function () {
         expect(bee.getBeeNumber()).toEqual(beeId);
     });
 
+    it("Should call the fly function", function(){
 
+
+
+
+
+
+
+
+
+
+    });
 
 });

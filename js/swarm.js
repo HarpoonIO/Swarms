@@ -23,7 +23,6 @@ var Swarm = function () {
     // simulate();
 
     var init = function () {
-
         know = new knowledgeExchange(beeSwarm);
         for (var i = 0; i < noOfBees; i++) {
 
@@ -35,16 +34,17 @@ var Swarm = function () {
 
         }
 
+
     };
 
     var simulate = function () {
         bestBee = know.findBestBee();
-        console.log("The current best bee is: " + bestBee.getBeeNumber() + ", at: " + bestBee.getX() + "," + bestBee.getY() + ", z: " + bestBee.getZ());
+        console.log("The current best bee is: " + bestBee.getBeeNumber() + ", at coordinates: " + bestBee.getX() + "," + bestBee.getY() + ", z: " + bestBee.getZ());
 
         for (var i = 0; i < noOfIterations; i++) {
 
             // Go through all bees every iteration
-            beeSwarm.forEach(function(currentBee){
+            beeSwarm.forEach(function (currentBee) {
 
                 currentBee.fly();
 
@@ -57,21 +57,24 @@ var Swarm = function () {
         }
     };
 
-    var findMaxDistance = function(){
+    var findMaxDistance = function () {
 
         var x2x1, y2y1 = 0;
-        maxDist, maxDistIda, maxDistIdb = 0;
+        maxDist = 0;
+        maxDistIda = 0;
+        maxDistIdb = 0;
+        distance = 0;
 
         for (var i = 0; i < noOfBees; i++) {
 
             for (var j = 0; j < noOfBees; j++) {
 
                 // We use the Pythagorean Theorem to find the distance! -> √(x2 - x1) + (y2 - y1)
-                x2x1 = Math.pow(beeSwarm[i].getX() - beeSwarm[j].getX(),2);
-                y2y1 = Math.pow(beeSwarm[i].getY() - beeSwarm[j].getY(),2);
+                x2x1 = Math.pow(beeSwarm[i].getX() - beeSwarm[j].getX(), 2);
+                y2y1 = Math.pow(beeSwarm[i].getY() - beeSwarm[j].getY(), 2);
                 distance = Math.sqrt(x2x1 + y2y1);
 
-                if(distance > maxDist){ // Then we check if the new value is the new "best"
+                if (distance > maxDist) {
 
                     maxDist = distance;
                     maxDistIda = i;
@@ -85,13 +88,29 @@ var Swarm = function () {
 
     };
 
-    //init();
-    //simulate();
+    var startSwarm = function(_noOfIterations){
 
-    console.log("Called from the swarm...");
+        if(_noOfIterations){
+            noOfIterations = _noOfIterations;
+            console.log("Number of iterations: " + noOfIterations);
+        }
 
-    console.log("Called from the swarm!");
-    // At some point we should maybe return something...
+        init();
+        simulate();
+        findMaxDistance();
+
+        console.log("--------------------Checking zone---------------------");
+        console.log("Called from the swarm!");
+        console.log("Number of bees: " + noOfBees);
+        console.log("Number of iterations: " + noOfIterations);
+        console.log("------------------------------------------------------");
+        console.log("The biggest distance is: " + maxDist);
+
+    };
+
+    return {
+        startSwarm: startSwarm
+    }
 
 };
 
