@@ -14,6 +14,11 @@ module.exports = function (config) {
         // list of files / patterns to load in the browser
 
         files: [
+            // Files we wanna test
+            'js/bee.js',
+            'js/knowledgeExchange.js',
+            'js/landscape.js',
+            'js/swarm.js',
             // Test files goes here
             'tests/test_bee.js'
         ],

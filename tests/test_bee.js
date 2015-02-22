@@ -1,10 +1,29 @@
-describe('Factories in project FifthElement', function () {
+describe('The making of a single bee', function () {
 
-  it("should be green!", function(){
-      console.log("------------> First test");
+    var bee;
+    var beeId = 42;
+    // Mocks
+    var knowMock = { // TODO: Make this a spy
+        findBestBee: function () {
+            console.log("Called from mock");
+            return 0;
+        }
+    };
 
-      expect(2).toEqual(2);
+    beforeEach(function () {
 
-  });
+        bee = new Bee(beeId, 1, 1, knowMock, 0.1, 0.1, 0.7, 0.1, 0.01, 0.01, false);
+
+    });
+
+    it("should be defined!", function () {
+        expect(bee).toBeDefined();
+    });
+
+    it("Should have the correct ID", function () {
+        expect(bee.getBeeNumber()).toEqual(beeId);
+    });
+
+
 
 });
