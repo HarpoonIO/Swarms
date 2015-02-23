@@ -10,14 +10,8 @@ describe('The making of a single bee', function () {
         }
     };
 
-    //var foo;
-
     beforeEach(function () {
-
-        //foo = jasmine.createSpyObj('knowledgeExchange', ['findBestBee']); // name, [functions]
-
         bee = new Bee(beeId, 1, 1, knowMock, 0.1, 0.1, 0.7, 0.1, 0.01, 0.01, false);
-
     });
 
     it("should be defined!", function () {
@@ -28,16 +22,15 @@ describe('The making of a single bee', function () {
         expect(bee.getBeeNumber()).toEqual(beeId);
     });
 
-    it("Should call the fly function", function(){
+    it("Should return the correct z value", function(){
 
+        var testX = bee.getX();
+        var testY = bee.getY();
+        var testZ = landscape.getZ(testX, testY);
 
+        var beeZ = bee.getZ();
 
-
-
-
-
-
-
+        expect(beeZ).toEqual(testZ);
 
     });
 

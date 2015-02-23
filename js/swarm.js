@@ -4,7 +4,7 @@
 
 var Swarm = function () {
 
-    var noOfBees = 5;
+    var noOfBees = 20;
     var noOfIterations = 500;
     var currentIteration = 0;
     var inertia = 0.1;
