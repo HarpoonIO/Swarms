@@ -7,19 +7,13 @@ var knowledgeExchange = function (beeSwarm) {
     var bestBee;
 
     var findBestBee = function(){
-
         bestBee = beeSwarm[0];
-
         for(var i = 0; i < beeSwarm.length; i++){
-
             if(beeSwarm[i].getZ() > bestBee.getZ()){
                 bestBee = beeSwarm[i];
             }
-
         }
-
         return bestBee;
-
     };
 
     return {

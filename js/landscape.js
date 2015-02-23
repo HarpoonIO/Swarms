@@ -10,8 +10,9 @@ var landscape = (function(){
     var yMin = -2;
 
     var getZ = function(x, y){
-        return x * Math.exp(-x * x - y * y)
+        return x * Math.exp(-x * x - y * y);
     };
+
 
     return {
         xMax: xMax,

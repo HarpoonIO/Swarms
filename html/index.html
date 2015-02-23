@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
 
-    <script src="../js/landscape.js"></script>
-    <script src="../js/bee.js"></script>
-    <script src="../js/knowledgeExchange.js"></script>
-    <script src="../js/swarm.js"></script>
+<html lang="en">
 
-    <title></title>
-</head>
-<body>
+	<head>
+		<title>S W A R M S</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../style/reset.css">
+		<link rel="stylesheet" href="../style/game.css">
+	</head>
+	
+	<body>
+		<div class="container">
+				<canvas id="gameCanvas" style="border: 1px dashed darkblue; background-color: darkseagreen;"></canvas>
+		</div>
 
 
+		<script src="../js/requestAnimationFrame.js"></script>
+		<script src="../js/visualizer.js"></script>
+		<script src="../js/landscape.js"></script>
+		<script src="../js/bee.js"></script>
+		<script src="../js/knowledgeExchange.js"></script>
+		<script src="../js/swarm.js"></script>
 
-
-
-    <!-- IMPORTANT: remember to instantiate the swarm from here! -->
-    <script>
-
-        var swarm = new Swarm();
-        swarm.startSwarm(500);
-
-        var nums = Math.pow(-2, 2) + Math.pow(7, 2) ;
-        var result = Math.sqrt(nums);
-
-    </script>
-
-</body>
+		<script>
+			// Initialise the game
+			init();
+			animate();
+		</script>
+	</body>
 </html>

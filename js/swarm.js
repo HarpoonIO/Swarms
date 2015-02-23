@@ -4,13 +4,14 @@
 
 var Swarm = function () {
 
-    var noOfBees = 20;
+    var noOfBees = 5;
     var noOfIterations = 500;
+    var currentIteration = 0;
     var inertia = 0.1;
     var rhoParticle = 0.1;
     var rhoGlobal = 0.8;
     var vMax = 0.01;
-    var fuzzy = false;
+    var fuzzy = true;
 
     var know;
     var beeSwarm = [];
@@ -21,6 +22,7 @@ var Swarm = function () {
 
     // init();
     // simulate();
+    var iterationsLeftToUpdate = 0;
 
     var init = function () {
         know = new knowledgeExchange(beeSwarm);
@@ -38,23 +40,29 @@ var Swarm = function () {
     };
 
     var simulate = function () {
+        currentIteration++;
+        if(currentIteration < 500){
         bestBee = know.findBestBee();
         console.log("The current best bee is: " + bestBee.getBeeNumber() + ", at coordinates: " + bestBee.getX() + "," + bestBee.getY() + ", z: " + bestBee.getZ());
 
-        for (var i = 0; i < noOfIterations; i++) {
-
+        //for (var i = 0; i < noOfIterations; i++) {
+            console.log("------------------------------------ PRINTING nr: " + currentIteration + " ------------------------------------");
             // Go through all bees every iteration
             beeSwarm.forEach(function (currentBee) {
 
                 currentBee.fly();
+                console.log("BeeNumber: " + currentBee.getBeeNumber() + ", (" + currentBee.getX() + "," + currentBee.getY() + ")");
 
             });
-
+            console.log("----------------------------------------------------------------------------------------------");
             // Print who's the best bee
             bestBee = know.findBestBee();
             console.log("The current best bee is: " + bestBee.getBeeNumber() + ", at: " + bestBee.getX() + "," + bestBee.getY() + ", z: " + bestBee.getZ());
-
         }
+        if(currentIteration == 500){
+            printStats();
+        }
+        //}
     };
 
     var findMaxDistance = function () {
@@ -97,6 +105,11 @@ var Swarm = function () {
 
         init();
         simulate();
+        printStats();
+
+    };
+
+    var printStats = function(){
         findMaxDistance();
 
         console.log("--------------------Checking zone---------------------");
@@ -105,11 +118,63 @@ var Swarm = function () {
         console.log("Number of iterations: " + noOfIterations);
         console.log("------------------------------------------------------");
         console.log("The biggest distance is: " + maxDist);
+    };
+
+    var getSwarm = function(){
+        return beeSwarm;
+    };
+
+    var update = function(){
+        if(iterationsLeftToUpdate > 0){
+            iterationsLeftToUpdate--;
+        }
+        if(iterationsLeftToUpdate == 0){
+            simulate();
+            iterationsLeftToUpdate += 2;
+        }
 
     };
 
+    var draw = function () {
+        // canvas length = 800
+        // canvas width = 800
+        // canvas center = 400,400
+        // -2 < x > 2 & -2 < y > 2 is like
+        // -400 < x > 400 & -400 < y > 400
+        // 400 / 2 = 200 --> the factor is 200
+        beeSwarm.forEach(function(currentBee){
+            if(currentBee.getBeeNumber() == bestBee.getBeeNumber()){
+                ctx.fillStyle = "#FF0000";
+            } else{
+                ctx.fillStyle = "#FFFF00";
+            }
+            ctx.shadowColor = '#000000';
+            ctx.shadowBlur = 15;
+            ctx.shadowOffsetX = 5;
+            ctx.shadowOffsetY = 5;
+            ctx.beginPath();
+            ctx.arc(currentBee.getX()*200,currentBee.getY()*200,5,0,2*Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.beginPath();
+            ctx.arc(currentBee.getX()*200,currentBee.getY()*200,10,0,2*Math.PI);
+            ctx.fill();
+            ctx.stroke();
+        });
+    };
+
     return {
-        startSwarm: startSwarm
+        startSwarm: startSwarm,
+        init: init,
+        simulate: simulate,
+        getSwarm: getSwarm,
+        update: update,
+        draw: draw
     }
 
 };
